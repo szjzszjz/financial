@@ -1,0 +1,17 @@
+CREATE TABLE `order_t`(
+`order_id` VARCHAR(64) NOT NULL COMMIT '订单编号',
+`chan_id` VARCHAR(64) NOT NULL COMMIT '渠道编号',
+`product_id` VARCHAR(64) NOT NULL COMMIT '产品编号',
+`chan_user_id` VARCHAR(64) NOT NULL COMMIT '渠道用户编号',
+`order_type` VARCHAR(64) NOT NULL COMMIT '类型，APPLY:申购,REDEEM:赎回',
+`order_status` VARCHAR(64) NOT NULL COMMIT '状态,INIT：初始化,PROCESS：处理中,SUCCESS:成功,FAIL:失败',
+`outer_order_id` VARCHAR(64) NOT NULL COMMIT '外部订单编号',
+`amount` DECIMAL(15,3) NOT NULL COMMIT '金额',
+`remark` VARCHAR(256) COMMIT '备注',
+`create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+`update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+PRIMARY KEY (`order_id`),
+KEY `idx_chanId` (`chan_id`) USING BTREE,
+KEY `idx_productId` (`product_id`) USING BTREE,
+KEY `idx_chanUserId` (`chan_user_id`) USING BTREE
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8_unicode_ci COMMENT='订单表';

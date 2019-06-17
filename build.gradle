@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+}
+
+apply from: "$rootDir/dependencies.gradle"
+
+group 'com.szjz'
+version '1.0-SNAPSHOT'
+
+subprojects {
+
+    apply plugin: 'java'
+    apply plugin: 'war'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
+    dependencies {
+        compile libs.common
+        testCompile libs.test
+    }
+    [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+}
+
