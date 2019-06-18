@@ -23,7 +23,13 @@ subprojects {
     dependencies {
         compile libs.common
         testCompile libs.test
+
+        annotationProcessor 'org.projectlombok:lombok:1.18.2'
+        compileOnly 'org.projectlombok:lombok:1.18.2'
+        testAnnotationProcessor 'org.projectlombok:lombok:1.18.2'
+        testCompileOnly 'org.projectlombok:lombok:1.18.2'
     }
     [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 }
+
 

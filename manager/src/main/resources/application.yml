@@ -1,0 +1,12 @@
+spring.datasource:
+  username: root
+  password: root
+  url: jdbc:mysql:///financial?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&useSSL=false
+  driver-class-name: com.mysql.jdbc.Driver
+
+  jpa:
+    show-sql: true
+
+server:
+  context-path: /manager
+  port: 8081
