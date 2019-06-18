@@ -8,5 +8,6 @@ spring.datasource:
     show-sql: true
 
 server:
-  context-path: /manager
   port: 8081
+  servlet:
+    context-path: /manager
