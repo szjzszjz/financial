@@ -1,4 +1,4 @@
-package com.szjz.model.response;
+package com.szjz.result;
 
 import com.szjz.model.base.PageModel;
 import lombok.Data;
@@ -14,7 +14,7 @@ public class Result {
 
     private static final long serialVersionUID = -4356140312569739366L;
     /**
-     * 错误码
+     * 代码
      */
     private Integer code;
 
@@ -28,10 +28,6 @@ public class Result {
      */
     private Object data;
 
-    /**
-     * debug模式下, 同时返回错误堆栈
-     */
-    private String exMsg;
 
     public Result() {
     }

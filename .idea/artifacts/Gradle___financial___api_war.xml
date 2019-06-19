@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Gradle : financial : api.war">
+    <output-path>$PROJECT_DIR$/api/build/libs</output-path>
+    <properties id="gradle-properties">
+      <options external-project-path="$PROJECT_DIR$" />
+    </properties>
+    <root id="archive" name="api.war">
+      <element id="artifact" artifact-name="Gradle : financial : api.war (exploded)" />
+    </root>
+  </artifact>
+</component>

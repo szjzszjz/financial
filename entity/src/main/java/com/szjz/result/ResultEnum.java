@@ -1,6 +1,5 @@
-package com.szjz.model.response;
+package com.szjz.result;
 
-import lombok.Data;
 import lombok.Getter;
 
 /**
@@ -8,7 +7,6 @@ import lombok.Getter;
  * date:2019/6/18
  */
 @Getter
-//@Data
 public enum ResultEnum {
     /** shift + ctrl + u 大小写相互转换*/
     SUCCESS(200, "操作成功"),
@@ -43,8 +41,27 @@ public enum ResultEnum {
         return msg;
     }
 
-    ResultEnum(Integer code, String message) {
+    ResultEnum(Integer code, String msg) {
         this.code = code;
-        this.msg = message;
+        this.msg = msg;
     }
+
+    public static ResultEnum getEnumByMsg(String msg){
+        for (ResultEnum e:ResultEnum.values()){
+            if (e.getMsg().equals(msg)){
+                return e;
+            }
+        }
+        return null;
+    }
+
+    public static ResultEnum getEnumByCode(Integer code){
+        for (ResultEnum e:ResultEnum.values()){
+            if (e.getCode()==code){
+                return e;
+            }
+        }
+        return null;
+    }
+
 }

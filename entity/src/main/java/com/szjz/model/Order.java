@@ -3,6 +3,7 @@ package com.szjz.model;
 import com.szjz.enums.OrderStatusEnum;
 import com.szjz.enums.OrderTypeEnum;
 import com.szjz.model.base.BaseEntity;
+import com.szjz.utils.KeyUtil;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -21,7 +22,7 @@ public class Order extends BaseEntity {
 
     /** 订单编号 */
     @Id
-    private String orderId;
+    private String orderId = KeyUtil.genUniqueKey();
 
     /** 渠道编号 */
     private String chanId;

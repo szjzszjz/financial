@@ -31,6 +31,7 @@ import java.util.List;
 @Slf4j
 public class ProductServiceImpl extends BaseServiceImpl<Product> implements ProductService {
 
+
     @Autowired
     private ProductRepository productRepository;
 
@@ -83,10 +84,10 @@ public class ProductServiceImpl extends BaseServiceImpl<Product> implements Prod
             if (idList!=null && idList.size()>0){
                 predicateList.add(root.get("id").in(idList));
             }
-            if (BigDecimal.ZERO.compareTo(minRewardRate)<0){
+            if (minRewardRate!=null && BigDecimal.ZERO.compareTo(minRewardRate)<0){
                 predicateList.add(cb.ge(root.get("rewardRate"),minRewardRate));
             }
-            if (BigDecimal.valueOf(30).compareTo(minRewardRate)>=0){
+            if (maxRewardRate!=null && BigDecimal.valueOf(30).compareTo(maxRewardRate)>=0){
                 predicateList.add(cb.le(root.get("rewardRate"),maxRewardRate));
             }
             if (statusEnumList!= null && statusEnumList.size()>0){

@@ -21,6 +21,8 @@ subprojects {
     }
 
     dependencies {
+        compile libs.jsonrpc
+        compile libs.swagger
         compile libs.common
         testCompile libs.test
 

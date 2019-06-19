@@ -1,5 +1,7 @@
 package com.szjz.model.base;
 
+import com.szjz.result.Result;
+import com.szjz.result.ResultEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +25,9 @@ public class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
     @Override
     public T findOne(Object id) {
         Assert.notNull(id, "商品编号为空");
-//        log.debug("查询单个产品 id={}", id);
+        log.debug("查询单个产品 id={}", id);
         T t = (T) baseRepository.findById(id).orElse(null);
-//        log.debug("查询单个产品 结果={}", t);
+        log.debug("查询单个产品 结果={}", t);
         return t;
     }
 
@@ -45,7 +47,7 @@ public class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
     @Override
     public void deleteByIds(List<Object> idList) {
         if (idList != null && idList.size() > 0) {
-//            log.debug("批量删除：ids={}", idList);
+            log.debug("批量删除：ids={}", idList);
             for (Object id : idList) {
                 if (!StringUtils.isEmpty(id.toString())) {
                     T t1 = (T) baseRepository.findById(id).orElse(null);
@@ -64,7 +66,9 @@ public class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
      */
     @Override
     public Long count(Integer integer) {
-        return baseRepository.count();
+        long count = baseRepository.count();
+        log.info("总量：{}",count);
+        return count;
     }
 
     /**
@@ -76,7 +80,7 @@ public class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
         if (hope) {
             //不存在抛异常
             if (obj == null) {
-//                throw new BusinessException(ResultErrorCodeEnum.RECORD_DOES_NOT_EXIST);
+                Assert.notNull(obj, ResultEnum.RECORD_DOES_NOT_EXIST.getMsg());
             }
             //存在 返回对象
             else {
@@ -87,7 +91,7 @@ public class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
         else {
             //存在抛异常
             if (obj != null) {
-//                throw new BusinessException(ResultErrorCodeEnum.RECORD_HAVE_EXIST);
+                Assert.notNull(obj, ResultEnum.RECORD_HAVE_EXIST.getMsg());
             }
         }
         return null;

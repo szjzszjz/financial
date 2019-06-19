@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Gradle : financial : swagger.war">
+    <output-path>$PROJECT_DIR$/swagger/build/libs</output-path>
+    <properties id="gradle-properties">
+      <options external-project-path="$PROJECT_DIR$" />
+    </properties>
+    <root id="archive" name="swagger.war">
+      <element id="artifact" artifact-name="Gradle : financial : swagger.war (exploded)" />
+    </root>
+  </artifact>
+</component>

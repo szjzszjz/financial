@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Gradle : financial : quartz.war">
+    <output-path>$PROJECT_DIR$/quartz/build/libs</output-path>
+    <properties id="gradle-properties">
+      <options external-project-path="$PROJECT_DIR$" />
+    </properties>
+    <root id="archive" name="quartz.war">
+      <element id="artifact" artifact-name="Gradle : financial : quartz.war (exploded)" />
+    </root>
+  </artifact>
+</component>

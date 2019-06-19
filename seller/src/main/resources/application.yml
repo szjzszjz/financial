@@ -1,0 +1,7 @@
+server:
+  servlet:
+    context-path: /seller
+  port: 8082
+
+#服务端url
+rpc.manager.url: http://localhost:8081/manager/
