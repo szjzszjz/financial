@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -71,12 +72,13 @@ public class ProductServiceImpl extends BaseServiceImpl<Product> implements Prod
      */
     public Page<Product> queryList(Integer pageNum,
                                    Integer pageSize,
+                                   Sort.Direction direction,
+                                   String orderBy,
                                    List<String> idList,
                                    BigDecimal minRewardRate,
                                    BigDecimal maxRewardRate,
                                    List<ProductStatusEnum> statusEnumList) {
-        PageRequest pageRequest = PageRequest.of(pageNum, pageSize);
-
+        PageRequest pageRequest = PageRequest.of(pageNum, pageSize,direction,orderBy);
 
         Specification specification = (Specification<Product>) (root, query, cb) -> {
 

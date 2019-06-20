@@ -1,14 +1,26 @@
-# financial
-金融理财系统  
-项目利用gradle 分模块进行构建
+/*
+Navicat MySQL Data Transfer
 
-## 项目知识点
-![思维导图](https://github.com/o0Y0o/financial/blob/master/manager/src/main/resources/static/pic/01.png)  
+Source Server         : localhost
+Source Server Version : 50726
+Source Host           : localhost:3306
+Source Database       : financial
 
-## 数据库表
-```
+Target Server Type    : MYSQL
+Target Server Version : 50726
+File Encoding         : 65001
+
+Date: 2019-06-20 11:11:50
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for order_t
+-- ----------------------------
+DROP TABLE IF EXISTS `order_t`;
 CREATE TABLE `order_t` (
-  `order_id` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL COMMENT '订单编号',
+  `id` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL COMMENT '订单编号',
   `chan_id` varchar(64) NOT NULL COMMENT '渠道编号',
   `product_id` varchar(64) NOT NULL COMMENT '产品编号',
   `chan_user_id` varchar(64) NOT NULL COMMENT '渠道用户编号',
@@ -19,7 +31,7 @@ CREATE TABLE `order_t` (
   `remark` varchar(255) DEFAULT NULL COMMENT '备注',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`order_id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
@@ -49,6 +61,7 @@ CREATE TABLE `product` (
 -- ----------------------------
 -- Records of product
 -- ----------------------------
+INSERT INTO `product` VALUES ('1560996630074', '健康基金', '15.000', '0.000', '0', '10.000', '0', '状如牛', '健康基金会', null, '2019-06-20 10:03:23', '2019-06-20 10:03:23');
+INSERT INTO `product` VALUES ('1560996861552', '财富基金', '13.000', '0.000', '0', '29.000', '0', '一夜暴富的基金', '财富基金会', null, '2019-06-20 10:02:26', '2019-06-20 10:02:26');
+INSERT INTO `product` VALUES ('1560997025457', '石油基金', '15.000', '0.000', '0', '20.000', '0', null, '石化集团', null, '2019-06-20 10:04:43', '2019-06-20 10:04:43');
 INSERT INTO `product` VALUES ('aaa', 'user', '12.000', '0.000', '0', '20.000', '0', '是是是', 'user', 'user', '2019-06-19 10:01:11', '2019-06-19 10:01:11');
-
-```

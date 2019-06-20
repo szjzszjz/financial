@@ -15,7 +15,7 @@ spring:
   #返回客户端的时间格式
   jackson:
     #java.text.SimpleDateFormat  #19-6-19 上午10:15
-    date-format: yyyy-MM-dd HH:mm:ss
+#    date-format: yyyy-MM-dd HH:mm:ss
     #东八区
     time-zone: GMT+8
 
@@ -29,3 +29,7 @@ server:
 swagger:
   groupName: manager
   basePackage: com.szjz.manager.controller
+
+logging:
+  level:
+    com.googlecode.jsonrpc4j: debug

@@ -32,6 +32,7 @@ public class RpcClientConfiguration {
             log.error("创建rpc服务端地址错误");
             e.printStackTrace();
         }
+        //api模块的服务接口所在包
         creator.setScanPackage(ProductRpcService.class.getPackage().getName()); //设置扫描包
         return creator;
     }

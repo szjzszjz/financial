@@ -5,3 +5,8 @@ server:
 
 #服务端url
 rpc.manager.url: http://localhost:8081/manager/
+
+
+logging:
+  level:
+    com.googlecode.jsonrpc4j: debug

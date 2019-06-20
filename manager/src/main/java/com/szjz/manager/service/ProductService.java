@@ -4,6 +4,7 @@ import com.szjz.enums.ProductStatusEnum;
 import com.szjz.model.Product;
 import com.szjz.model.base.BaseService;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -18,6 +19,8 @@ public interface ProductService extends BaseService<Product> {
 
     Page<Product> queryList(Integer pageNum,
                             Integer pageSize,
+                            Sort.Direction direction,
+                            String orderBy,
                             List<String> idList,
                             BigDecimal minRewardRate,
                             BigDecimal maxRewardRate,

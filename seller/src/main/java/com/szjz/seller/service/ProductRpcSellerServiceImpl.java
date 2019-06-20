@@ -6,6 +6,8 @@ import com.szjz.enums.ProductStatusEnum;
 import com.szjz.model.Product;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -17,12 +19,12 @@ import java.util.List;
  * date:2019/6/19
  */
 
-@Service
+@Component
 @Slf4j
 public class ProductRpcSellerServiceImpl {
 
     @Autowired
-    private ProductRpcService productRpcService;
+    private ProductRpcService productRpcService ;
 
     public List<Product> findAll(){
         ProductRpcReq productRpcReq = new ProductRpcReq();
@@ -31,9 +33,10 @@ public class ProductRpcSellerServiceImpl {
         productRpcReq.setStatusEnumList(statusList);
         productRpcReq.setPageNum(0);
         productRpcReq.setPageSize(100);
-//        PageRequest.of(0,100, Sort.Direction.DESC,"rewardRate");
+        productRpcReq.setDirection(Sort.Direction.DESC);
+        productRpcReq.setOrderBy("rewardRate");
         List<Product> productList = productRpcService.query(productRpcReq);
-        log.info("查询结果：{}",productList);
+        log.info("查询结果：数量={},结果集={}",productList.size(),productList);
         return productList;
     }
 

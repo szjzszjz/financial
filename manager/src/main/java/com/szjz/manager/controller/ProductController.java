@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -29,9 +30,20 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @PostMapping(value = "/create")
+    @PostMapping(value = "")
     @ApiOperation(value = "添加产品",notes = "",response = Result.class)
-    public Result create(Product product) {
+    public Result create(@RequestParam String name,
+                         @RequestParam ProductStatusEnum status,
+                         @RequestParam BigDecimal thresholdAmount,
+                         @RequestParam BigDecimal stepAmount,
+                         @RequestParam Integer lockTerm,
+                         @RequestParam BigDecimal rewardRate,
+                         @RequestParam(required = false) String createUser,
+                         @RequestParam(required = false) String updateUser,
+                         @RequestParam(required = false) String remark
+                         ) {
+        Product product = new Product(name, status, thresholdAmount, stepAmount, lockTerm, rewardRate, createUser, updateUser);
+        product.setRemark(remark);
         log.info("添加产品：product={}",product);
         Product product1 = productService.create(product);
         return Result.success(product1);
@@ -67,7 +79,8 @@ public class ProductController {
                 statusEnums.add(statusEnum);
             }
         }
-        Page<Product> productPage = productService.queryList(pageNum, pageSize, ids, minRewardRate, maxRewardRate, statusEnums);
+        //按照收益率进行降序排列
+        Page<Product> productPage = productService.queryList(pageNum, pageSize, Sort.Direction.DESC,"rewardRate", ids, minRewardRate, maxRewardRate, statusEnums);
         return Result.success(productPage);
     }
 

@@ -20,10 +20,6 @@ public class Order extends BaseEntity {
 
     private static final long serialVersionUID = -2633760291469112683L;
 
-    /** 订单编号 */
-    @Id
-    private String orderId = KeyUtil.genUniqueKey();
-
     /** 渠道编号 */
     private String chanId;
 

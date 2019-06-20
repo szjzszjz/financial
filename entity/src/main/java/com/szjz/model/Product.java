@@ -22,9 +22,6 @@ public class Product extends BaseEntity {
 
     private static final long serialVersionUID = 2037980036447645466L;
 
-    @Id
-    private String id = KeyUtil.genUniqueKey();
-
     /** 产品名称 */
     @ApiModelProperty(value = "产品名称") //swagger文档属性标注
     private String name;
@@ -52,4 +49,17 @@ public class Product extends BaseEntity {
     /** 更新者 */
     private String updateUser;
 
+    public Product() {
+    }
+
+    public Product(String name, ProductStatusEnum status, BigDecimal thresholdAmount, BigDecimal stepAmount, Integer lockTerm, BigDecimal rewardRate, String createUser, String updateUser) {
+        this.name = name;
+        this.status = status;
+        this.thresholdAmount = thresholdAmount;
+        this.stepAmount = stepAmount;
+        this.lockTerm = lockTerm;
+        this.rewardRate = rewardRate;
+        this.createUser = createUser;
+        this.updateUser = updateUser;
+    }
 }
