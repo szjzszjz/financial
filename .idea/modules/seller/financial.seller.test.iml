@@ -28,7 +28,7 @@
     <orderEntry type="module" module-name="financial.api.main" />
     <orderEntry type="module" module-name="financial.entity.main" />
     <orderEntry type="module" module-name="financial.util.main" />
-    <orderEntry type="library" name="Gradle: com.github.briandilley.jsonrpc4j:jsonrpc4j:1.5.3" level="project" />
+    <orderEntry type="library" name="Gradle: com.szjz.jsonrpc4j:jsonrpc4j:1.5.3" level="project" />
     <orderEntry type="library" name="Gradle: io.springfox:springfox-swagger2:2.7.0" level="project" />
     <orderEntry type="library" name="Gradle: io.springfox:springfox-swagger-ui:2.7.0" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-web:2.0.0.RELEASE" level="project" />

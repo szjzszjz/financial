@@ -17,7 +17,7 @@
           <element id="dir-copy" path="$PROJECT_DIR$/util/out/production/resources" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="Gradle: com.github.briandilley.jsonrpc4j:jsonrpc4j:1.5.3" />
+          <element id="library" level="project" name="Gradle: com.szjz.jsonrpc4j:jsonrpc4j:1.5.3" />
           <element id="library" level="project" name="Gradle: io.springfox:springfox-swagger2:2.7.0" />
           <element id="library" level="project" name="Gradle: io.springfox:springfox-swagger-ui:2.7.0" />
           <element id="library" level="project" name="Gradle: org.springframework.boot:spring-boot-starter-web:2.0.0.RELEASE" />
@@ -31,8 +31,8 @@
           <element id="library" level="project" name="Gradle: org.apache.logging.log4j:log4j-to-slf4j:2.10.0" />
           <element id="library" level="project" name="Gradle: org.springframework.boot:spring-boot-configuration-processor:2.0.0.RELEASE" />
           <element id="library" level="project" name="Gradle: io.springfox:springfox-swagger-common:2.7.0" />
-          <element id="library" level="project" name="Gradle: net.iharder:base64:2.3.9" />
           <element id="library" level="project" name="Gradle: io.swagger:swagger-models:1.5.13" />
+          <element id="library" level="project" name="Gradle: net.iharder:base64:2.3.9" />
           <element id="library" level="project" name="Gradle: io.swagger:swagger-annotations:1.5.13" />
           <element id="library" level="project" name="Gradle: io.springfox:springfox-schema:2.7.0" />
           <element id="library" level="project" name="Gradle: io.springfox:springfox-spring-web:2.7.0" />
@@ -46,8 +46,8 @@
           <element id="library" level="project" name="Gradle: org.springframework.plugin:spring-plugin-metadata:1.2.0.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework.plugin:spring-plugin-core:1.2.0.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework.data:spring-data-jpa:2.0.5.RELEASE" />
-          <element id="library" level="project" name="Gradle: com.zaxxer:HikariCP:2.7.8" />
           <element id="library" level="project" name="Gradle: org.slf4j:slf4j-api:1.7.25" />
+          <element id="library" level="project" name="Gradle: com.zaxxer:HikariCP:2.7.8" />
           <element id="library" level="project" name="Gradle: org.springframework.data:spring-data-commons:2.0.5.RELEASE" />
           <element id="library" level="project" name="Gradle: ch.qos.logback:logback-classic:1.2.3" />
           <element id="library" level="project" name="Gradle: org.slf4j:jul-to-slf4j:1.7.25" />

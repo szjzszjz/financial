@@ -3,10 +3,14 @@ server:
     context-path: /seller
   port: 8082
 
-#服务端url
-rpc.manager.url: http://localhost:8081/manager/
+
 
 
 logging:
   level:
     com.googlecode.jsonrpc4j: debug
+
+rpc:
+  server:
+    scanPackage: com.szjz.api  #对外服务接口所在包路径
+    url: http://localhost:8081/manager  #服务端baseUrl

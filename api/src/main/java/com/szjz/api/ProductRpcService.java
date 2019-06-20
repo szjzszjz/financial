@@ -14,7 +14,7 @@ import java.util.List;
  * 产品相关的rpc服务接口
  */
 
-@JsonRpcService("rps/product")
+@JsonRpcService
 public interface ProductRpcService {
 
     /** 动态查询多个产品 */

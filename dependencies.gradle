@@ -11,7 +11,8 @@ ext {
                     "org.springframework.boot:spring-boot-configuration-processor:${versions.springBootVersion}"
             ],
             jsonrpc:[
-                    "com.github.briandilley.jsonrpc4j:jsonrpc4j:1.5.3"
+                    //对原jsonrpc4j 再次封装
+                    "com.szjz.jsonrpc4j:jsonrpc4j:1.5.3"
             ],
             swagger: [
                     "io.springfox:springfox-swagger2:2.7.0",
