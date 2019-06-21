@@ -1,3 +1,6 @@
 dependencies{
     compile project(":api")
+    compile libs.hazelcast
+    compile libs.activemq
+    compile libs.mysql
 }

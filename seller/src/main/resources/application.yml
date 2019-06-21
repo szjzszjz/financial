@@ -6,11 +6,35 @@ server:
 
 
 
+#jsonrpc日志打印
 logging:
   level:
     com.googlecode.jsonrpc4j: debug
 
+#自定义rpc服务数据
 rpc:
   server:
     scanPackage: com.szjz.api  #对外服务接口所在包路径
     url: http://localhost:8081/manager  #服务端baseUrl
+
+#缓存类型
+spring:
+  cache:
+    type: hazelcast
+
+  #activemq
+  activemq:
+    broker-url: tcp://localhost:61616  #服务地址
+    packages:
+      trust-all: true  #信任所有包，所有的包都可以接受消息
+
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql:///financial?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+
+#配置当前模块的swagger
+swagger:
+  groupName: seller
+  basePackage: com.szjz.seller.controller

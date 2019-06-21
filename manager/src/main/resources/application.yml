@@ -1,6 +1,5 @@
 spring:
 
-
   datasource:
     username: root
     password: root
@@ -19,6 +18,13 @@ spring:
     #东八区
     time-zone: GMT+8
 
+#activemq
+  activemq:
+    broker-url: tcp://localhost:61616  #服务地址
+  jms:
+    pub-sub-domain: true  #发布订阅
+
+
 server:
   port: 8081
   servlet:
@@ -33,3 +39,4 @@ swagger:
 logging:
   level:
     com.googlecode.jsonrpc4j: debug
+

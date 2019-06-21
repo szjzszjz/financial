@@ -8,7 +8,7 @@ ext {
                     "org.springframework.boot:spring-boot-starter-data-jpa:${versions.springBootVersion}",
                     "org.apache.commons:commons-lang3:3.5",
                     "org.apache.logging.log4j:log4j-to-slf4j:${versions.springBootVersion}",
-                    "org.springframework.boot:spring-boot-configuration-processor:${versions.springBootVersion}"
+                    "org.springframework.boot:spring-boot-controller-processor:${versions.springBootVersion}"
             ],
             jsonrpc:[
                     //对原jsonrpc4j 再次封装
@@ -17,6 +17,16 @@ ext {
             swagger: [
                     "io.springfox:springfox-swagger2:2.7.0",
                     "io.springfox:springfox-swagger-ui:2.7.0",
+            ],
+            hazelcast: [
+                    'com.hazelcast:hazelcast:3.12.1',
+                    'com.hazelcast:hazelcast-spring:3.12.1'
+            ],
+            activemq: [
+                    "org.springframework.boot:spring-boot-starter-activemq:${versions.springBootVersion}",
+            ],
+            rsa: [
+                    "commons-codec:commons-codec:1.8"
             ],
             mysql : [
                     "mysql:mysql-connector-java:5.1.29"

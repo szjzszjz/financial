@@ -9,6 +9,7 @@ import com.szjz.model.base.BaseEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
@@ -18,7 +19,7 @@ import java.math.BigDecimal;
 
 @Data
 @Entity
-public class Product extends BaseEntity {
+public class Product extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 2037980036447645466L;
 

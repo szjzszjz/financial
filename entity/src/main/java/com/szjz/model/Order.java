@@ -8,6 +8,7 @@ import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
@@ -16,7 +17,7 @@ import java.math.BigDecimal;
  */
 @Data
 @Entity(name = "order_t")
-public class Order extends BaseEntity {
+public class Order extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = -2633760291469112683L;
 
