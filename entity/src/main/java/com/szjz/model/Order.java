@@ -42,6 +42,14 @@ public class Order extends BaseEntity implements Serializable {
     /** 金额 */
     private BigDecimal amount;
 
+    public Order() {
+    }
 
-
+    public Order(String chanId, String productId, String chanUserId, String outerOrderId, BigDecimal amount) {
+        this.chanId = chanId;
+        this.productId = productId;
+        this.chanUserId = chanUserId;
+        this.outerOrderId = outerOrderId;
+        this.amount = amount;
+    }
 }

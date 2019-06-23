@@ -60,6 +60,7 @@ public class RSAUtil {
         // 得到私钥字符串
         String privateKeyString = new String(Base64.encodeBase64((privateKey.getEncoded())));
         // 将公钥和私钥保存到Map
+
         keyMap.put(0,publicKeyString);  //0表示公钥
         keyMap.put(1,privateKeyString);  //1表示私钥
         return keyMap;
@@ -119,28 +120,33 @@ public class RSAUtil {
      * @return
      * @throws Exception
      */
-    public static String sign(String message, String privateKey) throws Exception {
+    public static String sign(String message, String privateKey){
         // 解密由base64编码的私钥
-        byte[] keyBytes = decryptBASE64(privateKey);
+        byte[] keyBytes = new byte[0];
+        try {
+            keyBytes = decryptBASE64(privateKey);
+            // 构造PKCS8EncodedKeySpec对象
+            PKCS8EncodedKeySpec pkcs8KeySpec = new PKCS8EncodedKeySpec(keyBytes);
 
-        // 构造PKCS8EncodedKeySpec对象
-        PKCS8EncodedKeySpec pkcs8KeySpec = new PKCS8EncodedKeySpec(keyBytes);
+            // KEY_ALGORITHM 指定的加密算法
+            KeyFactory keyFactory = KeyFactory.getInstance(KEY_ALGORITHM);
 
-        // KEY_ALGORITHM 指定的加密算法
-        KeyFactory keyFactory = KeyFactory.getInstance(KEY_ALGORITHM);
+            // 取私钥对象
+            PrivateKey priKey = keyFactory.generatePrivate(pkcs8KeySpec);
 
-        // 取私钥对象
-        PrivateKey priKey = keyFactory.generatePrivate(pkcs8KeySpec);
-
-        // 用私钥对信息生成数字签名
-        Signature signature = Signature.getInstance(SIGNATURE_ALGORITHM);
-        signature.initSign(priKey);
-        signature.update(message.getBytes());
-        String sign = encryptBASE64(signature.sign());
-        log.info("明文：{}",message);
-        log.debug("私钥：{}",privateKey);
-        log.debug("加签：{}",sign);
-        return sign;
+            // 用私钥对信息生成数字签名
+            Signature signature = Signature.getInstance(SIGNATURE_ALGORITHM);
+            signature.initSign(priKey);
+            signature.update(message.getBytes());
+            String sign = encryptBASE64(signature.sign());
+            log.info("明文：{}",message);
+            log.debug("私钥：{}",privateKey);
+            log.debug("加签结果：{}",sign);
+            return sign;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
@@ -150,33 +156,37 @@ public class RSAUtil {
      * @param publicKey 公钥
      * @param sign 签名结果
      * @return
-     * @throws Exception
      */
-    public static boolean verify(String message,  String sign ,String publicKey) throws Exception {
+    public static boolean verify(String message,  String sign ,String publicKey){
 
         // 解密由base64编码的公钥
-        byte[] keyBytes = decryptBASE64(publicKey);
+        byte[] keyBytes = new byte[0];
+        try {
+            keyBytes = decryptBASE64(publicKey);
+            // 构造X509EncodedKeySpec对象
+            X509EncodedKeySpec keySpec = new X509EncodedKeySpec(keyBytes);
 
-        // 构造X509EncodedKeySpec对象
-        X509EncodedKeySpec keySpec = new X509EncodedKeySpec(keyBytes);
+            // KEY_ALGORITHM 指定的加密算法
+            KeyFactory keyFactory = KeyFactory.getInstance(KEY_ALGORITHM);
 
-        // KEY_ALGORITHM 指定的加密算法
-        KeyFactory keyFactory = KeyFactory.getInstance(KEY_ALGORITHM);
+            // 取公钥对象
+            PublicKey pubKey = keyFactory.generatePublic(keySpec);
 
-        // 取公钥对象
-        PublicKey pubKey = keyFactory.generatePublic(keySpec);
+            Signature signature = Signature.getInstance(SIGNATURE_ALGORITHM);
+            signature.initVerify(pubKey);
+            signature.update(message.getBytes());
+            boolean verify = signature.verify(decryptBASE64(sign));
 
-        Signature signature = Signature.getInstance(SIGNATURE_ALGORITHM);
-        signature.initVerify(pubKey);
-        signature.update(message.getBytes());
-        boolean verify = signature.verify(decryptBASE64(sign));
+            log.info("公钥：{}",publicKey);
+            log.info("明文：{}",message);
+            log.info("验签结果：{}",verify);
 
-        log.debug("公钥：{}",publicKey);
-        log.info("明文：{}",message);
-        log.info("结果：{}",verify);
-
-        // 验证签名是否有效
-        return verify;
+            // 验证签名是否有效
+            return verify;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     /**

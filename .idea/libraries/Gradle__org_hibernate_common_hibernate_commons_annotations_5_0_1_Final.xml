@@ -4,6 +4,8 @@
       <root url="jar://$USER_HOME$/.m2/repository/org/hibernate/common/hibernate-commons-annotations/5.0.1.Final/hibernate-commons-annotations-5.0.1.Final.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate.common/hibernate-commons-annotations/5.0.1.Final/203038e420aaa3fa6df8bad4fda19ca1e2824005/hibernate-commons-annotations-5.0.1.Final-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>

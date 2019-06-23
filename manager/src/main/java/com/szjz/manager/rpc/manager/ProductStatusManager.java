@@ -8,6 +8,7 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 
 /**
  * author:szjz
@@ -22,7 +23,7 @@ public class ProductStatusManager {
     //定义消息目的地名 VirtualTopic. 规定固定写法
     public static final String MQ_DESTINATION = "VirtualTopic.PRODUCT_MQ";
 
-    @Autowired
+    @Resource
     private JmsTemplate jmsTemplate;
 
     public void changeStatus(String id, ProductStatusEnum statusEnum){

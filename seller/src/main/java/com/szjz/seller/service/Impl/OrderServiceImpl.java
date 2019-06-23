@@ -6,12 +6,14 @@ import com.szjz.enums.OrderTypeEnum;
 import com.szjz.model.Order;
 import com.szjz.model.Product;
 import com.szjz.model.base.BaseServiceImpl;
+import com.szjz.seller.repository.OrderRepository;
 import com.szjz.seller.service.OrderService;
 import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import javax.annotation.Resource;
 import java.util.Date;
 
 /**
@@ -23,8 +25,10 @@ import java.util.Date;
 public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderService {
 
 
-    @Autowired(required = false)
+    @Resource
     private ProductRpcService productRpcService;
+    @Resource
+    private OrderRepository orderRepository;
 
     @Override
     public Order create(Order order) {
@@ -40,8 +44,9 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
     private Order completeOrder(Order order) {
         order.setOrderType(OrderTypeEnum.APPLY);
         order.setOrderStatus(OrderStatusEnum.SUCCESS);
-        order.setUpdateTime(new Date());
-        return order;
+//        order.setUpdateTime(new Date());
+        Order result = orderRepository.saveAndFlush(order);
+        return result;
     }
 
     /** 数据校验 */
@@ -51,9 +56,9 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
         Assert.notNull(order.getChanUserId(),"需要渠道用户编号");
         Assert.notNull(order.getProductId(),"需要产品编号");
         Assert.notNull(order.getAmount(),"需要购买金额");
-        Assert.notNull(order.getCreateTime(),"需要订单时间");
+//        Assert.notNull(order.getCreateTime(),"需要订单时间");
 
-        Product product = productRpcService.findOne(order.getId());
+        Product product = productRpcService.findOne(order.getProductId());
         Assert.notNull(product,"产品不存在");
     }
 }

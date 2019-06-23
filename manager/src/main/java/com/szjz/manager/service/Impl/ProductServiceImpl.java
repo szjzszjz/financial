@@ -14,6 +14,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import javax.annotation.Resource;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -33,7 +34,7 @@ import java.util.List;
 public class ProductServiceImpl extends BaseServiceImpl<Product> implements ProductService {
 
 
-    @Autowired
+    @Resource
     private ProductRepository productRepository;
 
     public Product create(Product product) {

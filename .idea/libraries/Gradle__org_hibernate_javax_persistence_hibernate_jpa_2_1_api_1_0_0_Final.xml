@@ -6,6 +6,7 @@
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/.m2/repository/org/hibernate/javax/persistence/hibernate-jpa-2.1-api/1.0.0.Final/hibernate-jpa-2.1-api-1.0.0.Final-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate.javax.persistence/hibernate-jpa-2.1-api/1.0.0.Final/33fbaa7276b774ef0925f541640f6ff23fbc62dc/hibernate-jpa-2.1-api-1.0.0.Final-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

@@ -14,6 +14,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -30,9 +31,9 @@ public class ProductCache {
 
     public static final String cache_name = "CACHE_NAME";
 
-    @Autowired(required = false)
+    @Resource
     private ProductRpcService productRpcService;
-    @Autowired(required = false)
+    @Resource
     private HazelcastInstance hazelcastInstance;
 
 

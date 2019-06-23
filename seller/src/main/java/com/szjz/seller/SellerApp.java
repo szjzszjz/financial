@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
@@ -17,8 +18,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableCaching//开启缓存注解
-@EnableSwagger2
-@EntityScan(basePackages = "com.szjz.model")
+@EnableJpaRepositories(basePackages = {"com.szjz.model.base","com.szjz.seller.repository"})
+@EntityScan(basePackages = {"com.szjz.model","com.szjz.seller.sign"})
 public class SellerApp {
 
     public static void main(String[] args) {

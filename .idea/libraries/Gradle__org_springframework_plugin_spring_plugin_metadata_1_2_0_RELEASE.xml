@@ -4,6 +4,8 @@
       <root url="jar://$USER_HOME$/.m2/repository/org/springframework/plugin/spring-plugin-metadata/1.2.0.RELEASE/spring-plugin-metadata-1.2.0.RELEASE.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.plugin/spring-plugin-metadata/1.2.0.RELEASE/6551604dd9c0619bae2f5a244580fa9a0dc646bf/spring-plugin-metadata-1.2.0.RELEASE-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>

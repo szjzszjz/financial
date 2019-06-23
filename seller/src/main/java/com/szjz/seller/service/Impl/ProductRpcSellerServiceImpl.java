@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,9 +33,9 @@ public class ProductRpcSellerServiceImpl implements ApplicationListener<ContextR
 
     public static final String MQ_DESTINATION = "Consumer.cache.VirtualTopic.PRODUCT_MQ";
 
-    @Autowired(required = false)
+    @Resource
     private ProductRpcService productRpcService;
-    @Autowired
+    @Resource
     private ProductCache productCache;
 
     public List<Product> findAll() {

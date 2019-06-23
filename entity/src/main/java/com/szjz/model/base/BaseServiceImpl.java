@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.util.Assert;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -20,8 +21,12 @@ import java.util.List;
 @Slf4j
 public class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
 
-    @Autowired
-    private BaseRepository baseRepository;
+    @Resource
+    protected BaseRepository baseRepository;
+
+//    public BaseServiceImpl(BaseRepository<T> baseRepository) {
+//        this.baseRepository = baseRepository;
+//    }
 
     @Override
     public T findOne(Object id) {

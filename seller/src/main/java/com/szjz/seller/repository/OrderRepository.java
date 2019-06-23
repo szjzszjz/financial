@@ -2,6 +2,7 @@ package com.szjz.seller.repository;
 
 import com.szjz.model.Order;
 import com.szjz.model.base.BaseRepository;
+import org.springframework.stereotype.Component;
 
 /**
  * author:szjz

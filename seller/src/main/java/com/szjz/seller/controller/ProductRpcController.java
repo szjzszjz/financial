@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
+
 /**
  * author:szjz
  * date:2019/6/21
@@ -20,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/rpcProduct")
 public class ProductRpcController {
 
-    @Autowired(required = false)
+    @Resource
     private ProductRpcService productRpcService;
 
     @GetMapping("/{id}")

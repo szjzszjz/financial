@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
@@ -27,7 +28,7 @@ import java.util.List;
 //@Api(tags = "product",description = "产品相关") //swagger controller标签和描述
 public class ProductController {
 
-    @Autowired
+    @Resource
     private ProductService productService;
 
     @PostMapping(value = "")

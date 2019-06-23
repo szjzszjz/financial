@@ -17,6 +17,8 @@ import springfox.documentation.spring.web.plugins.ApiSelectorBuilder;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+import javax.annotation.Resource;
+
 
 /**
  * @author szjz
@@ -33,7 +35,7 @@ public class SwaggerConfig {
      */
     private final Logger logger = LoggerFactory.getLogger(SwaggerConfig.class);
 
-    @Autowired
+    @Resource
     private SwaggerProperty swaggerProperty;
 
     /** 可以存在多个docket 一个bean 代表一组 */

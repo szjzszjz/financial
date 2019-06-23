@@ -1,10 +1,7 @@
 server:
   servlet:
     context-path: /seller
-  port: 8082
-
-
-
+  port: 8084
 
 #jsonrpc日志打印
 logging:
@@ -33,6 +30,10 @@ spring:
     password: root
     url: jdbc:mysql:///financial?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&useSSL=false
     driver-class-name: com.mysql.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
 
 #配置当前模块的swagger
 swagger:

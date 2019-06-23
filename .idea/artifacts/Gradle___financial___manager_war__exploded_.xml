@@ -21,17 +21,17 @@
             <element id="module-output" name="financial.util.main" />
             <element id="dir-copy" path="$PROJECT_DIR$/util/out/production/resources" />
           </element>
-          <element id="archive" name="financial-api.jar">
-            <element id="module-output" name="financial.api.main" />
-            <element id="dir-copy" path="$PROJECT_DIR$/api/out/production/resources" />
+          <element id="archive" name="financial-swagger.jar">
+            <element id="module-output" name="financial.swagger.main" />
+            <element id="dir-copy" path="$PROJECT_DIR$/swagger/out/production/resources" />
           </element>
           <element id="archive" name="financial-entity.jar">
             <element id="module-output" name="financial.entity.main" />
             <element id="dir-copy" path="$PROJECT_DIR$/entity/out/production/resources" />
           </element>
-          <element id="archive" name="financial-swagger.jar">
-            <element id="module-output" name="financial.swagger.main" />
-            <element id="dir-copy" path="$PROJECT_DIR$/swagger/out/production/resources" />
+          <element id="archive" name="financial-api.jar">
+            <element id="module-output" name="financial.api.main" />
+            <element id="dir-copy" path="$PROJECT_DIR$/api/out/production/resources" />
           </element>
         </element>
       </element>
