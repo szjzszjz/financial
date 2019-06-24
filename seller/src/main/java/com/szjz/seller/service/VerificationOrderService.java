@@ -18,4 +18,5 @@ public interface VerificationOrderService extends BaseService<VerificationOrder>
 
     File makeVerificationFile(String chanId, Date day);
 
+    void saveVerificationOrder(String chanId, Date day);
 }

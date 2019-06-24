@@ -64,7 +64,7 @@ public class OrderController {
         return Result.success(result);
     }
 
-    /** 生成队长文件 */
+    /** 生成对账文件 */
     @PostMapping("/makeVerificationFile")
     @ApiOperation(value = "生成对账文件", notes = "", response = Result.class)
     public Result makeVerificationFile(@RequestParam String chanId,
@@ -73,5 +73,16 @@ public class OrderController {
         Date day1 = format.parse("2019-6-23");
         File file = verificationOrderService.makeVerificationFile(chanId, day1);
         return Result.success(file);
+    }
+
+    /** 保存验证订单 */
+    @PostMapping("/saveVerificationOrder")
+    @ApiOperation(value = "保存验证订单", notes = "", response = Result.class)
+    public Result saveVerificationOrder(@RequestParam String chanId,
+                                       @RequestParam(required = false) Date day) throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date day1 = format.parse("2019-6-23");
+         verificationOrderService.saveVerificationOrder(chanId, day1);
+        return Result.success();
     }
 }

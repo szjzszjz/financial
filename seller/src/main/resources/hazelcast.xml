@@ -36,7 +36,9 @@
         <name>dev</name>
     </group>
     <!--    self:enabled="false"==>"true" -->
-    <management-center enabled="true">http://localhost:8080/hazelcast-mancenter</management-center>
+    <management-center enabled="true">
+        http://localhost:8080/hazelcast-mancenter
+    </management-center>
     <network>
         <port auto-increment="true" port-count="100">5701</port>
         <outbound-ports>

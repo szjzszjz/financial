@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface VerificationOrderRepository extends BaseRepository<VerificationOrder> {
 
-    @Query(value = "select concat_ws('|',id,outer_order_id,chan_id,chan_user_id,product_id,order_type,amount,date_format(create_time,'%Y-%m-%d %H:%i:%s')) " +
+    @Query(value = "select concat_ws('*',id,outer_order_id,chan_id,chan_user_id,product_id,order_type,amount,date_format(create_time,'%Y-%m-%d %H:%i:%s')) " +
             "from order_t " +
             "where order_status = '2' " +
             "and chan_id = ?1 " +

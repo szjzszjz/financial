@@ -18,6 +18,9 @@ import java.math.BigDecimal;
 @Entity
 public class VerificationOrder extends BaseEntity implements Serializable {
 
+    /** 订单编号 */
+    private String orderId;
+
     /** 渠道编号 */
     private String chanId;
 

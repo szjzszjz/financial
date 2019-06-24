@@ -27,7 +27,7 @@ public enum ChanEnum {
         this.rootDir = rootDir;
     }
 
-    public ChanEnum getEnum(String chanId){
+    public static ChanEnum getByChanId(String chanId){
         for (ChanEnum chanEnum : ChanEnum.values()) {
             if (chanEnum.getChanId().equals(chanId)){
                 return chanEnum;

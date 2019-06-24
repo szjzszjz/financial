@@ -41,9 +41,9 @@ public class ProductCache {
 
     @Cacheable(cacheNames = cache_name)
     public Product readCache(String id){
-        log.info("查询单个产品 id={}", id);
+        log.info("readCache查询单个产品 id={}", id);
         Product product = productRpcService.findOne(id);
-        log.info("查询单个产品 product={}", product);
+        log.info("readCache查询单个产品 product={}", product);
         return product;
     }
 

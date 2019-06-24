@@ -60,10 +60,11 @@ public class ProductRpcSellerServiceImpl implements ApplicationListener<ContextR
     //spring容器初始化完成之后会触发该事件
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        List<Product> productList = findAll();
-        productList.forEach(product -> {
-            productCache.putCache(product);
-        });
+        System.err.println("spring容器初始化完成之后");
+//        List<Product> productList = findAll();
+//        productList.forEach(product -> {
+//            productCache.putCache(product);
+//        });
     }
 
 

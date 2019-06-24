@@ -1,7 +1,9 @@
 package com.szjz.seller.service.Impl;
 
+import com.szjz.enums.OrderTypeEnum;
 import com.szjz.model.VerificationOrder;
 import com.szjz.model.base.BaseServiceImpl;
+import com.szjz.seller.enums.ChanEnum;
 import com.szjz.seller.repository.VerificationOrderRepository;
 import com.szjz.seller.service.VerificationOrderService;
 import org.aspectj.util.FileUtil;
@@ -12,10 +14,12 @@ import javax.annotation.Resource;
 import javax.xml.crypto.Data;
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -31,14 +35,19 @@ public class VerificationOrderServiceImpl extends BaseServiceImpl<VerificationOr
     @Resource
     private VerificationOrderRepository verificationOrderRepository;
 
-    /** 文件根目录 */
-    @Value("${verification.rootDir:/opt/verification}")
-    private String rootDir;
+    /**
+     * 文件根目录
+     */
+//    @Value("${verification.rootDir:/opt/verification}")
+//    private String rootDir;
 
-    /** 指定换行符 */
-    private String end_line = System.getProperty("line.separator","\n");
+    /**
+     * 指定换行符
+     */
+    private String end_line = System.getProperty("line.separator", "\n");
 
     private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private DateFormat dateFormat_detail = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     /**
      * 查询验证订单
@@ -56,16 +65,20 @@ public class VerificationOrderServiceImpl extends BaseServiceImpl<VerificationOr
 
     /**
      * 生成某个渠道某天的对账文件
+     *
      * @param chanId 渠道编号
      * @param day
      * @return 对账文件
      */
     @Override
     public File makeVerificationFile(String chanId, Date day) {
-        File file = getFile(chanId, day);
+        //根据chanId 获取文件存储的根路径
+        ChanEnum chanEnum = ChanEnum.getByChanId(chanId);
+        String rootDir = chanEnum.getRootDir();
+        File file = getFile(rootDir, chanId, day);
         if (file.exists()) {
             return file;
-        }else {
+        } else {
             try {
                 file.createNewFile();
             } catch (IOException e) {
@@ -91,22 +104,68 @@ public class VerificationOrderServiceImpl extends BaseServiceImpl<VerificationOr
     }
 
 
-    /** 获取文件 */
-    public File getFile(String chanId ,Date day){
+    /**
+     * 获取文件 (全路径)
+     */
+    public File getFile(String rootDir, String chanId, Date day) {
         //生成文件名
-        String fileName = dateFormat.format(day)+"-"+System.currentTimeMillis()+ "-"+chanId+".txt";
+        String fileName = dateFormat.format(day) + "-" + chanId + ".txt";
         //根路径+文件名生成文件
         File file = Paths.get(rootDir, fileName).toFile();
         return file;
     }
 
-    /** 将每一行的数据转换成对象 */
-    public VerificationOrder convertToVerificationOrder(String  line){
-        String[] eles = line.split("|");
+    /**
+     * 将每一行的数据转换成对象
+     *
+     * @param line
+     */
+    public VerificationOrder parseLine(String line) {
+        String[] eles = line.split("[*]");
         //id,outer_order_id,chan_id,chan_user_id,product_id,order_type,amount,date_format
-        VerificationOrder verficationOrder = new VerificationOrder();
-        verficationOrder.setChanId();
+        VerificationOrder verificationOrder = new VerificationOrder();
+        verificationOrder.setOrderId(eles[0]);
+        verificationOrder.setOuterOrderId(eles[1]);
+        verificationOrder.setChanId(eles[2]);
+        verificationOrder.setChanUserId(eles[3]);
+        verificationOrder.setProductId(eles[4]);
+        verificationOrder.setOrderType(OrderTypeEnum.getByCode(Integer.valueOf(eles[5])));
+        verificationOrder.setAmount(new BigDecimal(eles[6]));
+        try {
+            verificationOrder.setCreateTime(dateFormat_detail.parse(eles[7]));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return verificationOrder;
     }
 
 
+    /**
+     * 保存验证订单数据
+     */
+    public void saveVerificationOrder(String chanId, Date day) {
+        ChanEnum chanEnum = ChanEnum.getByChanId(chanId);
+
+        //获取文件
+        File file = getFile(chanEnum.getRootDir(), chanId, day);
+        //不存在就返回
+        if (!file.exists()) {
+            return;
+        }
+        //存在就读取
+        String content = null;
+        try {
+            content = FileUtil.readAsString(file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //解析内容
+        String[] lines = content.split(end_line);
+        List<VerificationOrder> orderList = new ArrayList<>();
+        //解析行
+        for (String line : lines) {
+            orderList.add(parseLine(line));
+        }
+        verificationOrderRepository.saveAll(orderList);
+    }
 }
