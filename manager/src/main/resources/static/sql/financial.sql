@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost_3306
+Source Server         : localhost
 Source Server Version : 50726
 Source Host           : localhost:3306
 Source Database       : financial
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50726
 File Encoding         : 65001
 
-Date: 2019-06-23 23:35:05
+Date: 2019-06-25 19:58:51
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,14 +21,14 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `order_t`;
 CREATE TABLE `order_t` (
   `id` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL COMMENT '订单编号',
-  `chan_id` varchar(64) NOT NULL COMMENT '渠道编号',
-  `product_id` varchar(64) NOT NULL COMMENT '产品编号',
-  `chan_user_id` varchar(64) NOT NULL COMMENT '渠道用户编号',
-  `order_type` varchar(64) NOT NULL COMMENT '类型，APPLY:申购,REDEEM:赎回',
+  `outer_order_id` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL COMMENT '外部订单编号',
+  `chan_id` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL COMMENT '渠道编号',
+  `product_id` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL COMMENT '产品编号',
+  `chan_user_id` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL COMMENT '渠道用户编号',
+  `order_type` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL COMMENT '类型，APPLY:申购,REDEEM:赎回',
   `order_status` varchar(64) NOT NULL COMMENT '状态,INIT：初始化,PROCESS：处理中,SUCCESS:成功,FAIL:失败',
-  `outer_order_id` varchar(64) NOT NULL COMMENT '外部订单编号',
   `amount` decimal(15,3) NOT NULL COMMENT '金额',
-  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
+  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL COMMENT '备注',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
@@ -37,10 +37,9 @@ CREATE TABLE `order_t` (
 -- ----------------------------
 -- Records of order_t
 -- ----------------------------
-INSERT INTO `order_t` VALUES ('1561213922827', 'aaa', 'aaa', 'aaa', '0', '2', 'aaa', '23.000', null, '2019-06-22 22:15:38', '2019-06-22 22:15:38');
-INSERT INTO `order_t` VALUES ('1561287648356', 'aaa', 'aaa', 'aaa', '0', '2', 'aaa', '444.000', null, '2019-06-23 18:55:05', '2019-06-23 18:55:05');
-INSERT INTO `order_t` VALUES ('1561298069689', 'bbb', '1560996630074', 'bbb', '0', '2', 'bbb', '123.000', null, '2019-06-23 21:45:59', '2019-06-23 21:45:59');
-INSERT INTO `order_t` VALUES ('1561298143649', 'aaa', '1560996630074', 'bbb', '0', '2', 'bbb', '123.000', null, '2019-06-23 21:46:23', '2019-06-23 21:46:23');
+INSERT INTO `order_t` VALUES ('1561448694340', '1561449020130', 'bbb', '1560996861552', '1561448960075', '0', '2', '3334.000', null, '2019-06-25 15:36:04', '2019-06-25 15:36:04');
+INSERT INTO `order_t` VALUES ('1561448914843', '1561448673563', 'bbb', '1560997025457', '1561449025507', '0', '2', '11.000', null, '2019-06-25 15:35:13', '2019-06-25 15:35:13');
+INSERT INTO `order_t` VALUES ('1561449057146', '1561448717996', 'bbb', '1560996630074', '1561448695500', '0', '2', '99999.000', null, '2019-06-25 15:36:15', '2019-06-25 15:36:15');
 
 -- ----------------------------
 -- Table structure for product
@@ -68,7 +67,7 @@ CREATE TABLE `product` (
 INSERT INTO `product` VALUES ('1560996630074', '健康基金', '15.000', '0.000', '0', '10.000', '0', '状如牛', '健康基金会', null, '2019-06-20 10:03:23', '2019-06-20 10:03:23');
 INSERT INTO `product` VALUES ('1560996861552', '财富基金', '13.000', '0.000', '0', '29.000', '0', '一夜暴富的基金', '财富基金会', null, '2019-06-20 10:02:26', '2019-06-20 10:02:26');
 INSERT INTO `product` VALUES ('1560997025457', '石油基金', '15.000', '0.000', '0', '20.000', '0', null, '石化集团', null, '2019-06-20 10:04:43', '2019-06-20 10:04:43');
-INSERT INTO `product` VALUES ('aaa', 'user', '12.000', '0.000', '0', '20.000', '0', '是是是', 'user', 'user', '2019-06-19 10:01:11', '2019-06-19 10:01:11');
+INSERT INTO `product` VALUES ('aaa', 'user', '12.000', '0.000', '0', '20.000', '1', '是是是', 'user', 'user', '2019-06-19 10:01:11', '2019-06-24 09:35:06');
 
 -- ----------------------------
 -- Table structure for sign
@@ -97,13 +96,14 @@ INSERT INTO `sign` VALUES ('1561298210602', 'MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmA
 DROP TABLE IF EXISTS `verification_order`;
 CREATE TABLE `verification_order` (
   `id` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL COMMENT '订单编号',
-  `chan_id` varchar(64) NOT NULL COMMENT '渠道编号',
-  `product_id` varchar(64) NOT NULL COMMENT '产品编号',
-  `chan_user_id` varchar(64) NOT NULL COMMENT '渠道用户编号',
-  `order_type` varchar(64) NOT NULL COMMENT '类型，APPLY:申购,REDEEM:赎回',
-  `outer_order_id` varchar(64) NOT NULL COMMENT '外部订单编号',
+  `order_id` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL COMMENT '订单编号',
+  `outer_order_id` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL COMMENT '外部订单编号',
+  `chan_id` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL COMMENT '渠道编号',
+  `product_id` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL COMMENT '产品编号',
+  `chan_user_id` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL COMMENT '渠道用户编号',
+  `order_type` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL COMMENT '类型，APPLY:申购,REDEEM:赎回',
   `amount` decimal(15,3) NOT NULL COMMENT '金额',
-  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
+  `remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci DEFAULT NULL COMMENT '备注',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
@@ -112,3 +112,6 @@ CREATE TABLE `verification_order` (
 -- ----------------------------
 -- Records of verification_order
 -- ----------------------------
+INSERT INTO `verification_order` VALUES ('1561448476641', '1561449020130', '1561448694340', 'bbb', '1560996861555', '1561448960075', '0', '3334.000', null, '2019-06-25 15:37:12', '2019-06-25 16:36:02');
+INSERT INTO `verification_order` VALUES ('1561448757425', '1561448717996', '1561449057146', 'bbb', '1560996630074', '1561448695500', '0', '99999.000', null, '2019-06-25 15:37:12', '2019-06-25 15:37:12');
+INSERT INTO `verification_order` VALUES ('1561448975802', '1561448847521', '1561448664384', 'bbb', '1560996861552', '1561448486931', '0', '11.000', null, '2019-06-25 15:37:12', '2019-06-25 16:36:27');
