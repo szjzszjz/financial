@@ -36,12 +36,14 @@ public class JsonRpcConfiguration {
         AutoJsonRpcClientProxyCreator creator = new AutoJsonRpcClientProxyCreator();
         try {
             creator.setBaseUrl(new URL(url));  //设置服务端url
+            log.info("baseUrl = {}",new URL(url));
         } catch (MalformedURLException e) {
             log.error("创建rpc服务端地址错误");
             e.printStackTrace();
         }
         //api模块的服务接口所在包
         creator.setScanPackage(scanPackage); //设置扫描包
+        log.info("扫描包路径 = {}",scanPackage);
         return creator;
     }
     

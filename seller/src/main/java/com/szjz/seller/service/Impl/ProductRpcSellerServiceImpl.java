@@ -61,10 +61,10 @@ public class ProductRpcSellerServiceImpl implements ApplicationListener<ContextR
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         System.err.println("spring容器初始化完成之后");
-//        List<Product> productList = findAll();
-//        productList.forEach(product -> {
-//            productCache.putCache(product);
-//        });
+        List<Product> productList = findAll();
+        productList.forEach(product -> {
+            productCache.putCache(product);
+        });
     }
 
 
@@ -75,7 +75,8 @@ public class ProductRpcSellerServiceImpl implements ApplicationListener<ContextR
         productCache.removeCache(event.getId());
         //只缓存在售状态的产品
         if (ProductStatusEnum.IN_SELL.equals(event.getStatus())){
-            productCache.readCache(event.getId());
+            Product product = productCache.readCache(event.getId());
+            log.debug("缓存产品：{}",product);
         }
     }
 }

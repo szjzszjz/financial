@@ -8,6 +8,7 @@ import com.szjz.model.Product;
 import com.szjz.model.base.BaseServiceImpl;
 import com.szjz.seller.repository.OrderRepository;
 import com.szjz.seller.service.OrderService;
+import com.szjz.utils.KeyUtil;
 import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,16 +45,17 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
     private Order completeOrder(Order order) {
         order.setOrderType(OrderTypeEnum.APPLY);
         order.setOrderStatus(OrderStatusEnum.SUCCESS);
-//        order.setUpdateTime(new Date());
+        order.setOuterOrderId(KeyUtil.genUniqueKey());
+        order.setChanUserId(KeyUtil.genUniqueKey());
         Order result = orderRepository.saveAndFlush(order);
         return result;
     }
 
     /** 数据校验 */
     private void checkOrder(Order order) {
-        Assert.notNull(order.getOuterOrderId(),"需要外部订单编号");
+//        Assert.notNull(order.getOuterOrderId(),"需要外部订单编号");
         Assert.notNull(order.getChanId(),"需要渠道编号");
-        Assert.notNull(order.getChanUserId(),"需要渠道用户编号");
+//        Assert.notNull(order.getChanUserId(),"需要渠道用户编号");
         Assert.notNull(order.getProductId(),"需要产品编号");
         Assert.notNull(order.getAmount(),"需要购买金额");
 //        Assert.notNull(order.getCreateTime(),"需要订单时间");

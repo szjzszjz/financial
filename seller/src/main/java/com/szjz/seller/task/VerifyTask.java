@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class VerifyTask {
 
     /** 每3秒执行一次 cron表达式必须由6位组成*/
-    @Scheduled(cron = "0/3 * * * * ?")
+//    @Scheduled(cron = "0/3 * * * * ?")
     public void test(){
         System.out.println("test...");
     }

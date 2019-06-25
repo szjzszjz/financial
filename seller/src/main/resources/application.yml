@@ -12,7 +12,7 @@ logging:
 rpc:
   server:
     scanPackage: com.szjz.api  #对外服务接口所在包路径
-    url: http://localhost:8081/manager  #服务端baseUrl
+    url: http://localhost:8083/manager  #服务端baseUrl
 
 #缓存类型
 spring:

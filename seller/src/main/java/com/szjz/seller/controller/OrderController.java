@@ -70,7 +70,7 @@ public class OrderController {
     public Result makeVerificationFile(@RequestParam String chanId,
                                        @RequestParam(required = false) Date day) throws ParseException {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        Date day1 = format.parse("2019-6-23");
+        Date day1 = format.parse("2019-6-25");
         File file = verificationOrderService.makeVerificationFile(chanId, day1);
         return Result.success(file);
     }
@@ -81,7 +81,7 @@ public class OrderController {
     public Result saveVerificationOrder(@RequestParam String chanId,
                                        @RequestParam(required = false) Date day) throws ParseException {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        Date day1 = format.parse("2019-6-23");
+        Date day1 = format.parse("2019-6-25");
          verificationOrderService.saveVerificationOrder(chanId, day1);
         return Result.success();
     }

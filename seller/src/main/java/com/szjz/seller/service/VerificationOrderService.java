@@ -16,7 +16,11 @@ public interface VerificationOrderService extends BaseService<VerificationOrder>
     /** 查询验证订单 */
     List<String> queryVerificationOrders(String chanId, Date start, Date end);
 
+
     File makeVerificationFile(String chanId, Date day);
 
     void saveVerificationOrder(String chanId, Date day);
+
+    /** 返回长款，漏款，不一致 */
+    List<String > verifyOrder(String chanId, Date day);
 }

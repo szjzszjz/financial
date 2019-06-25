@@ -23,4 +23,9 @@ RSA加签验签：
 
 ![RSA](https://github.com/o0Y0o/financial/blob/master/manager/src/main/resources/static/pic/rsa.png)
 - #### 对账  
+长款：`order_t`表中存在的订单数据 ，但`verification_order`表中不存在  
+漏单：`order_t`表中不存在的订单数据 ，但`verification_order`表中存在  
+不一致：`order_t`,`verification_order`表中相同的订单数据 但是订单的部分信息不一致  
+平账：收到异常对账结果，通知人工邮件短信  
+轧差：申购金额总和与赎回金额总和的差值  
 ![对账](https://github.com/o0Y0o/financial/blob/master/manager/src/main/resources/static/pic/duizhang.png)
