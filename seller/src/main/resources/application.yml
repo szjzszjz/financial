@@ -26,14 +26,30 @@ spring:
       trust-all: true  #信任所有包，所有的包都可以接受消息
 
   datasource:
+    #多数据源时将url 改为 jdbc-url
+#    primary: #主库
+#      driver-class-name: com.mysql.jdbc.Driver
+#      username: root
+#      password: root
+#      jdbc-url: jdbc:mysql:///financial?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&useSSL=false
+#
+#    backup:  #备份库
+#      driver-class-name: com.mysql.jdbc.Driver
+#      username: root
+#      password: root
+#      jdbc-url: jdbc:mysql:///financial-backup?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&useSSL=false
+
+    driver-class-name: com.mysql.jdbc.Driver
     username: root
     password: root
     url: jdbc:mysql:///financial?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull&useSSL=false
-    driver-class-name: com.mysql.jdbc.Driver
+
+
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
+
 
 #配置当前模块的swagger
 swagger:

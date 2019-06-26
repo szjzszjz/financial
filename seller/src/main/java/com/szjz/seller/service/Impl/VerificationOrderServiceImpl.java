@@ -4,16 +4,14 @@ import com.szjz.enums.OrderTypeEnum;
 import com.szjz.model.VerificationOrder;
 import com.szjz.model.base.BaseServiceImpl;
 import com.szjz.seller.enums.ChanEnum;
-import com.szjz.seller.repository.VerificationOrderRepository;
+import com.szjz.seller.repositoryBackup.VerificationOrderRepository;
 import com.szjz.seller.service.VerificationOrderService;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.util.FileUtil;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import javax.annotation.Resource;
-import javax.xml.crypto.Data;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;

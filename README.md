@@ -8,7 +8,7 @@
 ## 数据库表
 [数据库表格](https://github.com/szjzszjz/financial/blob/master/manager/src/main/resources/static/sql/financial.sql)
 
-## 知识点  
+## 知识点   
 ### 学习项目之前需要先观看以下4个视频（已会者随意）
 - #### [新一代构建工具gradle](https://www.imooc.com/learn/833)
 - #### [轻松愉快之玩转SpringData](https://www.imooc.com/learn/821)
