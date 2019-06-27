@@ -1,4 +1,4 @@
-package com.szjz.seller.sign;
+package com.szjz.model;
 
 import com.szjz.model.base.BaseEntity;
 import lombok.Data;

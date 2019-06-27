@@ -4,6 +4,7 @@ import com.szjz.model.base.BaseEntity;
 import lombok.Data;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -16,6 +17,7 @@ import java.math.BigDecimal;
 
 @Data
 @Entity
+@Table(name = "verification_order")
 public class VerificationOrder extends BaseEntity implements Serializable {
 
     /** 订单编号 */

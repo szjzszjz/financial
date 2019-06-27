@@ -1,9 +1,7 @@
 package com.szjz.seller.service;
 
 import com.szjz.model.base.BaseService;
-import com.szjz.seller.sign.Sign;
-
-import java.security.NoSuchAlgorithmException;
+import com.szjz.model.Sign;
 
 /**
  * author:szjz

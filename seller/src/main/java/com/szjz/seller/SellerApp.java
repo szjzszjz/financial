@@ -26,8 +26,15 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @EnableScheduling //开启定时任务
 @EnableCaching//开启缓存注解
-@EnableJpaRepositories(basePackages = {"com.szjz.model.base", "com.szjz.seller.repository", "com.szjz.seller.repositoryBackup"})
-@EntityScan(basePackages = {"com.szjz.model", "com.szjz.seller.sign"})
+@EnableJpaRepositories(basePackages = {
+        "com.szjz.model.base",
+        "com.szjz.seller.repository",
+        "com.szjz.seller.repositoryBackup"})
+@EntityScan(basePackages = {
+        "com.szjz.model",
+        "com.szjz.seller.sign",
+//        "com.szjz.modelBackup"
+})
 public class SellerApp {
 
     public static void main(String[] args) {

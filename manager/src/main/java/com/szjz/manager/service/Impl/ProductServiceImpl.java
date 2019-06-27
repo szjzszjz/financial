@@ -52,8 +52,8 @@ public class ProductServiceImpl extends BaseServiceImpl<Product> implements Prod
     private void setDefault(Product product) {
         product.setCreateTime(new Date());
         product.setUpdateTime(new Date());
-        product.setStepAmount(BigDecimal.ZERO);
-        product.setLockTerm(0);
+//        product.setStepAmount(BigDecimal.ZERO);
+//        product.setLockTerm(0);
         product.setStatus(ProductStatusEnum.AUDITING);
     }
 

@@ -4,9 +4,8 @@ package com.szjz.seller.service.Impl;
 import com.szjz.model.base.BaseServiceImpl;
 import com.szjz.seller.repository.SignRepository;
 import com.szjz.seller.service.SignService;
-import com.szjz.seller.sign.Sign;
+import com.szjz.model.Sign;
 import com.szjz.utils.rsa.RSAUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

@@ -1,19 +1,24 @@
-package com.szjz.seller.repositoryBackup;
+package com.szjz.seller.repository;
 
 import com.szjz.model.VerificationOrder;
 import com.szjz.model.base.BaseRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Component;
 
-import javax.xml.crypto.Data;
 import java.util.Date;
 import java.util.List;
 
 /**
  * author:szjz
  * date:2019/6/23
+ *
+ * 备份库Repository
  */
+
+//@Component
 public interface VerificationOrderRepository extends BaseRepository<VerificationOrder> {
 
+    /** 将所有的数据以“*”连接成字符串，存入txt文件中 */
     @Query(value = "select CONCAT_WS('*',id,outer_order_id,chan_id,chan_user_id,product_id,order_type,amount,date_format(create_time,'%Y-%m-%d %H:%i:%s')) " +
             "from order_t " +
             "where order_status = '2' " +
@@ -22,7 +27,7 @@ public interface VerificationOrderRepository extends BaseRepository<Verification
             "and create_time < ?3 ",nativeQuery = true)
     List<String > queryVerificationOrders(String chanId, Date start, Date end);
 
-    /** 长款 */
+    /** 长款 ：订单表中的数据比验证订单表中的数据多*/
     @Query(value = "select t.id " +
             "from order_t t " +
             "left join verification_order v " +
@@ -33,7 +38,7 @@ public interface VerificationOrderRepository extends BaseRepository<Verification
             "and t.create_time < ?3 ",nativeQuery = true)
     List<String > queryExcessOrders(String chanId, Date start, Date end);
 
-    /** 漏单 */
+    /** 漏单 ：订单表中的数据比验证订单表中的数据少*/
     @Query(value = "select v.order_id " +
             "from verification_order v " +
             "left join order_t t " +
@@ -44,7 +49,7 @@ public interface VerificationOrderRepository extends BaseRepository<Verification
             "and v.create_time < ?3 ",nativeQuery = true)
     List<String > queryMissOrders(String chanId, Date start, Date end);
 
-    /** 不一致 */
+    /** 不一致 ：同时拥有相同的数据 但是数据的部分信息不一致*/
     @Query(value = "select t.id " +
             "from order_t t " +
             "join verification_order v " +

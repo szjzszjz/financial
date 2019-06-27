@@ -4,7 +4,7 @@ import com.szjz.enums.OrderTypeEnum;
 import com.szjz.model.VerificationOrder;
 import com.szjz.model.base.BaseServiceImpl;
 import com.szjz.seller.enums.ChanEnum;
-import com.szjz.seller.repositoryBackup.VerificationOrderRepository;
+import com.szjz.seller.repository.VerificationOrderRepository;
 import com.szjz.seller.service.VerificationOrderService;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.util.FileUtil;

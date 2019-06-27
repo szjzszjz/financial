@@ -1,7 +1,7 @@
 package com.szjz.seller.repository;
 
 import com.szjz.model.base.BaseRepository;
-import com.szjz.seller.sign.Sign;
+import com.szjz.model.Sign;
 
 /**
  * author:szjz
