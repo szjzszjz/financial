@@ -23,13 +23,13 @@ import java.util.Map;
 /**
  * author:szjz
  * date:2019/6/26
- *
+ * ***************修改源码之后主从数据库同用相同的repository
  * 备份库 读取操作
  */
 @Slf4j
 @Configuration
 @EnableTransactionManagement
-@RepositoryBeanNamePrefix("read")
+@RepositoryBeanNamePrefix("read") //修改源码时自己定义的注解
 @EnableJpaRepositories(
         entityManagerFactoryRef = "backupEntityManagerFactory",
         transactionManagerRef = "backupTransactionManager",
@@ -52,13 +52,13 @@ public class ReadConfiguration {
     }
 
     @Bean(name = "backupEntityManager")
-    public EntityManager entityManager(EntityManagerFactoryBuilder builder) {
+    public EntityManager backupEntityManager(EntityManagerFactoryBuilder builder) {
         log.info("backupEntityManager");
-        return entityManagerFactory(builder).getObject().createEntityManager();
+        return backupEntityManagerFactory(builder).getObject().createEntityManager();
     }
 
-    @Bean(name = "backupEntityManagerFactory") //注：实例默认名称为方法名，在此，如果不指定bean的name，方法名必须为entityManagerFactory 否则，报错
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder) {
+    @Bean(name = "backupEntityManagerFactory") //注：实例默认名称为方法名
+    public LocalContainerEntityManagerFactoryBean backupEntityManagerFactory(EntityManagerFactoryBuilder builder) {
         log.info("配置备份库实体类管理工厂实例:{}",backupDataSource());
         LocalContainerEntityManagerFactoryBean build = builder
                 .dataSource(backupDataSource())
@@ -77,10 +77,10 @@ public class ReadConfiguration {
         return jpaProperties.getHibernateProperties(new HibernateSettings());
     }
 
-    @Bean(name = "backupTransactionManager") //注**：方法名必须为transactionManager
-    public PlatformTransactionManager transactionManager(EntityManagerFactoryBuilder builder) {
+    @Bean(name = "backupTransactionManager")
+    public PlatformTransactionManager backupTransactionManager(EntityManagerFactoryBuilder builder) {
         log.info("配置备份库事务管理器");
-        return new JpaTransactionManager(entityManagerFactory(builder).getObject());
+        return new JpaTransactionManager(backupEntityManagerFactory(builder).getObject());
     }
 }
 

@@ -1,12 +1,7 @@
 package com.szjz.seller.configuration;
 
-import com.szjz.model.Order;
-import com.szjz.seller.repository.OrderRepository;
-import com.zaxxer.hikari.HikariDataSource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateSettings;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -17,20 +12,17 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Map;
-import java.util.Properties;
 
 /**
  * 主库 写入操作
+ * ***************修改源码之后主从数据库同用相同的repository
  */
 @Slf4j
 @Primary
@@ -65,7 +57,7 @@ public class PrimaryConfiguration {
 
 
     @Primary
-    @Bean(name = "entityManagerFactory") //注**：实例默认名称为方法名，在此，如果不指定bean的name,方法名必须为entityManagerFactory
+    @Bean(name = "entityManagerFactory") //注**：实例默认名称为方法名，主库实体管理工厂方法名必须为entityManagerFactory
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder) {
         log.info("配置主库实体类管理工厂实例");
         return builder
@@ -85,7 +77,7 @@ public class PrimaryConfiguration {
     }
 
     @Primary
-    @Bean(name = "transactionManager") //注**：方法名必须为transactionManager
+    @Bean(name = "transactionManager") //注：主库事务管理方法名必须为transactionManager
     public PlatformTransactionManager transactionManager(EntityManagerFactoryBuilder builder) {
         log.info("配置主库事务管理器");
         return new JpaTransactionManager(entityManagerFactory(builder).getObject());
