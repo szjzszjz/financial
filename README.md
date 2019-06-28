@@ -35,6 +35,8 @@ RSA加签验签：
 修改源码的两种方案：  
 - 下载源码 、修改、编译、测试、提交仓库 [jsonrpc4j源码修改实例](https://github.com/szjzszjz/jsonrpc4j)
 - 利用原理：“当前应用下有对应类时不会使用依赖包中的类” 在项目中添加对用的类，复制源码，修改需求部分 [repository.config源码修改实例](https://github.com/szjzszjz/financial/blob/master/seller/src/main/java/com/szjz/seller/org/springframework/data/repository/config)
-### 版本迭代引起的问题：  
-- （1）配置多数据源时，视频中所讲的方法已不适应springboot 2.0.0之后的版本。最好将主备配置分开，不要像视频中所讲的那样放在一起，不然会出现很多问题。正确方法详见：[多数据源配置](https://github.com/szjzszjz/financial/tree/master/seller/src/main/java/com/szjz/seller/configuration)  
+### 主从复制-读写分离   
+- [主库从库配置](http://note.youdao.com/noteshare?id=0972101c8d7c4056d81398df327c2855&sub=DEBC5AC3B06440B4BC8F78B2892A0944)
+- springboot版本迭代引起的问题：  
+（1）配置多数据源时，视频中所讲的方法已不适应springboot 2.0.0之后的版本。最好将主备配置分开，不要像视频中所讲的那样放在一起，不然会出现很多问题。正确方法详见：[多数据源配置](https://github.com/szjzszjz/financial/tree/master/seller/src/main/java/com/szjz/seller/configuration)  
 
